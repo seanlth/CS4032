@@ -3,6 +3,6 @@ name = "Lab2"
 version = "0.1.0"
 authors = ["hargados <hargados@tcd.ie>"]
 
-
 [dependencies]
 threadpool = "0.1.4"
+libc = "0.1.12"

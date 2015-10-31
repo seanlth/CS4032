@@ -1,21 +1,28 @@
-use std::net::{TcpListener, TcpStream, SocketAddr};
+use std::net::{TcpListener, TcpStream};
 use std::sync::{Arc, Mutex};
 use std::io::prelude::*;
 
 extern crate threadpool;
 use threadpool::ThreadPool;
 
+extern crate Lab2;
+
+use Lab2::host::*;
+
 
 fn handle_connection(mut stream: TcpStream, kill: Arc<Mutex<bool>>, port: String)  {
     if let Ok(local) = stream.local_addr() {
-        let ip_string = match local {
-            SocketAddr::V4(ip) => {
-                format!("{}", ip.ip())
-            },
-            SocketAddr::V6(ip) => {
-                format!("{}", ip.ip())
-            }
-        };
+        // let ip_string = match local {
+        //     SocketAddr::V4(ip) => {
+        //         format!("{}", ip.ip())
+        //     },
+        //     SocketAddr::V6(ip) => {
+        //         format!("{}", ip.ip())
+        //     }
+        // };
+
+        let ip_string = ip_of_host("seanlth.duckdns.org");
+
 
         let mut buf = [0; 1024];
         if let Ok(size) = stream.read(&mut buf) {
@@ -40,6 +47,8 @@ fn handle_connection(mut stream: TcpStream, kill: Arc<Mutex<bool>>, port: String
 }
 
 fn main() {
+
+
     if let Some(port) = std::env::args().nth(1) {
         let kill = Arc::new(Mutex::new(false));
 
