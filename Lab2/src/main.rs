@@ -34,7 +34,7 @@ fn handle_connection(mut stream: TcpStream, kill: Arc<Mutex<bool>>, port: String
                     let _ = stream.write( reply.to_string().as_bytes() );
                 }
             }
-            else if message == "KILL_SERVICE\n" {
+            else if message == "KILL_SERVICE" {
                 let mut k = kill.lock().unwrap();
                 *k = true;
                 let _ = TcpStream::connect( &*("127.0.0.1:".to_string() + &port.to_string()));
