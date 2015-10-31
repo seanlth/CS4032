@@ -1,2 +1,2 @@
 #!/bin/bash
-cargo run -- 80
+cargo run -- 8000

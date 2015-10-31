@@ -23,7 +23,7 @@ fn handle_connection(mut stream: TcpStream, kill: Arc<Mutex<bool>>, port: String
 
             if message.len() >= 4 {
                 if &message[0..4] == "HELO" {
-                    let reply = message.to_string() + &*format!("\nIP:{}\nPort:{}\nStudentID:f5438a275459e6d07c647e34bc1650be7565c817e7fe3c89ee28c122e3162fb0\n", ip_string, local.port() );
+                    let reply = message.to_string() + &*format!("IP:{}\nPort:{}\nStudentID:f5438a275459e6d07c647e34bc1650be7565c817e7fe3c89ee28c122e3162fb0\n", ip_string, local.port() );
                     let _ = stream.write( reply.to_string().as_bytes() );
                 }
             }

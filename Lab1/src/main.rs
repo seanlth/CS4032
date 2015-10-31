@@ -8,9 +8,9 @@ fn main() {
     let line = stdin.lock().lines().next().unwrap().unwrap();
 
     // can change to localhost
-    let addr = "127.0.0.1";
+    let addr = "109.78.84.202";
 
-    if let Ok(mut s) = TcpStream::connect( &*(addr.to_string() + ":8000") ) {
+    if let Ok(mut s) = TcpStream::connect( &*(addr.to_string() + ":25566") ) {
         let request: String = format!("{}", line);
         let _ = s.write(request.as_bytes());
         let mut buf = [0; 1024];
